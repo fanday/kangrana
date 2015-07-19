@@ -1,0 +1,19 @@
+kanboardstats:
+  image: fanday/kanboardstats
+  env_file:
+   - ./common.env
+  links:
+   - influxdb
+
+influxdb:
+  image: tutum/influxdb
+  ports:
+   - "8086:8086"
+   - "8083:8083"
+
+grafana:
+  image: grafana/grafana
+  ports:
+   - "9000:3000"
+  links:
+   - influxdb
